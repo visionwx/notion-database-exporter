@@ -8,8 +8,8 @@ this action is used to export notion database to csv and json
   - name: Notion database export to csv and json
     uses: visionwx/notion-database-exporter@v1.0.0
     with:
-        notionToken: ${{ secrets.FIGMA_TOKEN }}
-        notionDatabaseId: "https://www.figma.com/file/dl3xK2kay66wdgJiCaV0wy..."
+        notionToken: xxxxx
+        notionDatabaseId: xxxx
         columnNames: Module,Key,Attribute,en,zh,Remark,Status
         columnTypes: multi_select,title,select,rich_text,rich_text,rich_text,status
         allowDuplicatedTitle: false

@@ -1,0 +1,39 @@
+name: Notion Database Exporter Test
+
+on:
+  workflow_dispatch:
+    inputs:
+      notionDatabaseId:
+        description: Notion database id
+        type: string
+        required: true
+
+env:
+  OUTPUT_FOLDER: out/
+
+jobs:
+  process:
+    name: main process
+    runs-on: ubuntu-latest
+    steps:
+      # pull code
+      - uses: actions/checkout@v2
+
+      # generate icon
+      - name: Notion database export to csv and json
+        uses: visionwx/notion-database-exporter@v1.0.0
+        with:
+          notionToken: ${{ secrets.NOTION_TOKEN }}
+          notionDatabaseId: ${{ github.event.inputs.notionDatabaseId }}
+          columnNames: Module,Key,Attribute,en,zh,Remark,Status
+          columnTypes: multi_select,title,select,rich_text,rich_text,rich_text,status
+          allowDuplicatedTitle: false
+          output: ${{ env.OUTPUT_FOLDER }}
+
+      # copy to
+      - name: Copy file
+        run: |
+          ls -ltrh ${{ env.OUTPUT_FOLDER }}
+          cat ${{ env.OUTPUT_FOLDER }}/data.json
+
+      # push and create pr
