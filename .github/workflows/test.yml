@@ -21,7 +21,7 @@ jobs:
 
       # generate icon
       - name: Notion database export to csv and json
-        uses: visionwx/notion-database-exporter@v1.0.0
+        uses: visionwx/notion-database-exporter@v1.0.1
         with:
           notionToken: ${{ secrets.NOTION_TOKEN }}
           notionDatabaseId: ${{ github.event.inputs.notionDatabaseId }}

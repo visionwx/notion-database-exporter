@@ -6,7 +6,7 @@ this action is used to export notion database to csv and json
 #### Usage
 ```
   - name: Notion database export to csv and json
-    uses: visionwx/notion-database-exporter@v1.0.0
+    uses: visionwx/notion-database-exporter@v1.0.1
     with:
         notionToken: xxxxx
         notionDatabaseId: xxxx
