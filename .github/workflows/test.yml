@@ -7,7 +7,10 @@ on:
         description: Notion database id
         type: string
         required: true
-
+      commitMessage:
+        description: Commit message
+        type: string
+        required: true
 env:
   OUTPUT_FOLDER: out/
 
@@ -34,6 +37,15 @@ jobs:
       - name: Copy file
         run: |
           ls -ltrh ${{ env.OUTPUT_FOLDER }}
-          cat ${{ env.OUTPUT_FOLDER }}/data.json
+          cat ${{ env.OUTPUT_FOLDER }}data.json
+          cp ${{ env.OUTPUT_FOLDER }}data.json data.json
 
       # push and create pr
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v4
+        with:
+          commit-message: ${{ github.event.inputs.commitMessage }}
+          title: ${{ github.event.inputs.commitMessage }}
+          body: ${{ github.event.inputs.commitMessage }}
+          branch: auto-update-i18n
+          base: main
