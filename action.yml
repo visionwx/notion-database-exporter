@@ -1,0 +1,29 @@
+name: 'Notion Database Exporter'
+description: 'Export Notion Database to CSV and JSON'
+author: 'VisionWX'
+branding:
+  icon: 'upload'
+  color: 'gray-dark'
+inputs:
+  notionToken:
+    description: 'The notion integration token'
+    required: true
+  notionDatabaseId:
+    description: 'The notion database id'
+    required: true
+  columnNames:
+    description: 'The column names you want to export and convert, seperate by ",", e.g. task name,task assigner'
+    required: true
+  columnTypes:
+    description: 'The column types of the column names'
+    required: true
+  allowDuplicatedTitle:
+    description: 'Whether duplicated title is allowed, only check when columnTypes has title type'
+    required: true
+  output:
+    description: 'The ouput folder path'
+    required: true
+
+runs:
+  using: 'node16'
+  main: 'index.js'
